@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"log"
 	"net/url"
 	"time"
 )
@@ -50,7 +51,17 @@ func (m *Manager) Run() error {
 	}
 }
 
+func (m *Manager) quit() error {
+	_, err := m.api.put("/quit", nil, nil)
+	if err != nil {
+		return err
+	}
+	return err
+}
 func (m *Manager) Quit() error {
+	if err := m.quit(); err != nil {
+		log.Println("use api quit failed:", err)
+	}
 	if err := m.client.Quit(); err != nil {
 		return err
 	}

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"net/url"
 	"time"
 )
@@ -51,7 +52,17 @@ func (c *Core) Run() error {
 	}
 }
 
+func (c *Core) quit() error {
+	_, err := c.api.put("/quit", nil, nil)
+	if err != nil {
+		return err
+	}
+	return err
+}
 func (c *Core) Quit() error {
+	if err := c.quit(); err != nil {
+		log.Println("use api quit failed:", err)
+	}
 	if err := c.client.Quit(); err != nil {
 		return err
 	}
