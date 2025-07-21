@@ -1,7 +1,6 @@
 package goxfree
 
 import (
-	"fmt"
 	"os"
 	"path"
 	"path/filepath"
@@ -250,14 +249,13 @@ func (o Option) GetServerUnixAddress() string {
 	if o.serverUnixAddress != nil {
 		return *o.serverUnixAddress
 	}
-	n := time.Now().Format("20060102150405")
 	switch runtime.GOOS {
 	case "windows":
-		return fmt.Sprintf(`\\.\pipe\xfree-%s`, n)
+		return `\\.\pipe\xfree`
 	case "darwin":
-		return fmt.Sprintf(`/tmp/xfree-%s.sock`, n)
+		return `/tmp/xfree.sock`
 	case "linux":
-		return fmt.Sprintf(`/tmp/xfree-%s.sock`, n)
+		return `/tmp/xfree.sock`
 	default:
 		return ""
 	}

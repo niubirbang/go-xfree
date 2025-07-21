@@ -39,9 +39,6 @@ func (m *Manager) Run() error {
 	for {
 		select {
 		case <-ctx.Done():
-			if err != nil {
-				return err
-			}
 			return errors.New("timeout")
 		case <-ticker.C:
 			if err = m.TestClient(); err == nil {
