@@ -211,7 +211,7 @@ func (o Option) GetMixedPort() int {
 	return defaultMixedPort
 }
 func (o Option) GetExternalControllerPort() int {
-	if o.mixedPort != nil {
+	if o.externalControllerPort != nil {
 		return *o.externalControllerPort
 	}
 	return defaultExternalControllerPort
