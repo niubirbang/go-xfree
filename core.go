@@ -148,17 +148,17 @@ func (c *Core) ChangeProxyMode(mode ProxyMode) error {
 }
 func (c *Core) ChangeNodes(nodes Nodes) error {
 	param := map[string]interface{}{
-		"model": nodes.model,
+		"model": nodes.Model,
 	}
-	switch nodes.model {
+	switch nodes.Model {
 	case NODE_MODEL_YAML:
-		param["yaml"] = nodes.value
+		param["yaml"] = nodes.Value
 	case NODE_MODEL_URI:
-		param["uri"] = nodes.value
+		param["uri"] = nodes.Value
 	case NODE_MODEL_BASE64:
-		param["base64"] = nodes.value
+		param["base64"] = nodes.Value
 	default:
-		return fmt.Errorf("unknow model: %s", nodes.model)
+		return fmt.Errorf("unknow model: %s", nodes.Model)
 	}
 	_, err := c.api.put("/change-nodes", nil, param)
 	return err

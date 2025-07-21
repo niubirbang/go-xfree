@@ -64,36 +64,36 @@ type (
 	Chain    []string
 	Subs     []Sub
 	Sub      struct {
-		Name      string     `json:"name,omitempty"`
-		Chain     Chain      `json:"chain,omitempty"`
-		Model     SubModel   `json:"model,omitempty"`
-		ExpiredAt *time.Time `json:"expiredAt,omitempty"`
-		Usable    *bool      `json:"usable,omitempty"`
-		URI       string     `json:"uri,omitempty"`
-		Delay     int        `json:"delay,omitempty"`
-		Children  Subs       `json:"children,omitempty"`
-		NodeName  string     `json:"nodeName,omitempty"`
+		Name      string     `json:"name"`
+		Chain     Chain      `json:"chain"`
+		Model     SubModel   `json:"model"`
+		ExpiredAt *time.Time `json:"expiredAt"`
+		Usable    *bool      `json:"usable"`
+		URI       string     `json:"uri"`
+		Delay     int        `json:"delay"`
+		Children  Subs       `json:"children"`
+		NodeName  string     `json:"nodeName"`
 	}
 
 	CoreStore struct {
-		Running   bool
-		NetMode   NetMode
-		ProxyMode ProxyMode
-		Current   string
-		Status    Status
+		Running   bool      `json:"running"`
+		NetMode   NetMode   `json:"netMode"`
+		ProxyMode ProxyMode `json:"proxyMode"`
+		Current   string    `json:"current"`
+		Status    Status    `json:"status"`
 	}
 	ManagerStore struct {
 		CoreStore
-		Subs         Subs
-		ConnectTime  *time.Time
-		CurrentSub   *Sub
-		CurrentChain Chain
-		CurrentMode  CurrentMode
+		Subs         Subs        `json:"subs"`
+		ConnectTime  *time.Time  `json:"connectTime"`
+		CurrentSub   *Sub        `json:"currentSub"`
+		CurrentChain Chain       `json:"currentChain"`
+		CurrentMode  CurrentMode `json:"currentMode"`
 	}
 
 	Nodes struct {
-		model NodeModel
-		value interface{}
+		Model NodeModel   `json:"model"`
+		Value interface{} `json:"value"`
 	}
 
 	Memery struct {
@@ -123,20 +123,20 @@ type (
 
 func NewNodesYaml(value []interface{}) Nodes {
 	return Nodes{
-		model: NODE_MODEL_YAML,
-		value: value,
+		Model: NODE_MODEL_YAML,
+		Value: value,
 	}
 }
 func NewNodesUri(value []string) Nodes {
 	return Nodes{
-		model: NODE_MODEL_URI,
-		value: value,
+		Model: NODE_MODEL_URI,
+		Value: value,
 	}
 }
 func NewNodesBase64(value string) Nodes {
 	return Nodes{
-		model: NODE_MODEL_BASE64,
-		value: value,
+		Model: NODE_MODEL_BASE64,
+		Value: value,
 	}
 }
 
