@@ -23,9 +23,8 @@ const (
 
 	DefaultLogLevel = LevelWarn
 
-	MODE_INSTALLER Mode = "INSTALLER"
-	MODE_CORE      Mode = "CORE"
-	MODE_MANAGER   Mode = "MANAGER"
+	MODE_CORE    Mode = "CORE"
+	MODE_MANAGER Mode = "MANAGER"
 
 	MODE_SYSPROXY NetMode = "SYSPROXY"
 	MODE_TUN      NetMode = "TUN"

@@ -48,7 +48,7 @@ type Option struct {
 func NewOption(dir string, options ...setter) Option {
 	var o Option
 	if !filepath.IsAbs(dir) {
-		currentDir, _ := os.Getwd()
+		currentDir, _ := os.Executable()
 		dir = path.Join(currentDir, dir)
 	}
 	o.dir = dir

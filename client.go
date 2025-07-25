@@ -32,15 +32,6 @@ type (
 	}
 )
 
-func newClientInstaller(option Option) *client {
-	c := &client{
-		option: option,
-		mode:   MODE_INSTALLER,
-	}
-	c.init()
-	return c
-}
-
 func newClientCore(option Option) *client {
 	c := &client{
 		option: option,
@@ -97,12 +88,6 @@ func (c *client) Run() error {
 	// build args
 	var args []string
 	switch c.mode {
-	case MODE_INSTALLER:
-		args = []string{
-			"install",
-			"--dir", c.option.GetDir(),
-			"--level", string(c.option.GetLogLevel()),
-		}
 	case MODE_CORE:
 		args = []string{
 			"crun",

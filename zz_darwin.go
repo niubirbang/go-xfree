@@ -97,7 +97,10 @@ func (c *client) setChownChmod(filePaths []string) error {
 	}
 	shell := strings.Join(innerCmds, "\n")
 	escapedCmd := strings.ReplaceAll(shell, `"`, `\"`)
-	appleScript := fmt.Sprintf(`do shell script "%s" with administrator privileges`, escapedCmd)
+	appleScript := fmt.Sprintf(
+		`do shell script "%s" with prompt "Kernel xfree requires authorization to use" with administrator privileges`,
+		escapedCmd,
+	)
 	cmd := exec.Command("osascript", "-e", appleScript)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
